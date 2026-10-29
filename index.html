@@ -12,12 +12,12 @@
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
     html, body, #cesiumContainer { width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden; background-color: #121519; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     
-    /* BARRA SUPERIOR OPTIMIZADA (SCROLL HORIZONTAL PARA MÓVIL S24 ULTRA) */
+    /* BARRA SUPERIOR ADAPTABLE (SCROLL HORIZONTAL EN MÓVIL, FIJA EN PC) */
     .top-bar { 
       position: absolute; top: 12px; left: 12px; right: 12px; z-index: 10; 
       background: rgba(18, 21, 25, 0.92); backdrop-filter: blur(8px); 
-      padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.12); 
-      color: #f0f3f6; display: flex; align-items: center; gap: 6px; 
+      padding: 6px 12px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.12); 
+      color: #f0f3f6; display: flex; align-items: center; gap: 8px; 
       box-shadow: 0 4px 16px rgba(0,0,0,0.4); 
       flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch;
       scrollbar-width: thin; scrollbar-color: #58a6ff rgba(0,0,0,0.2);
@@ -25,8 +25,8 @@
     .top-bar::-webkit-scrollbar { height: 3px; }
     .top-bar::-webkit-scrollbar-thumb { background: #58a6ff; border-radius: 2px; }
 
-    .top-bar h1 { margin: 0 4px 0 0; font-size: 13px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: #58a6ff; white-space: nowrap; }
-    .nav-btn { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); color: #e6edf3; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .top-bar h1 { margin: 0 6px 0 0; font-size: 13px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: #58a6ff; white-space: nowrap; }
+    .nav-btn { background: rgba(255, 255, 258, 0.08); border: 1px solid rgba(255, 255, 258, 0.15); color: #e6edf3; padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .nav-btn:hover { background: #1f6feb; border-color: #58a6ff; }
     .nav-btn.active-measure { background: #238636; border-color: #2ea043; color: #fff; }
     .nav-btn.active-slope { background: #d29922; border-color: #e3b341; color: #000; font-weight: 700; }
@@ -40,7 +40,7 @@
     .compass-card { position: absolute; top: 65px; right: 16px; z-index: 10; width: 85px; height: 85px; background: rgba(18, 21, 25, 0.90); backdrop-filter: blur(8px); border-radius: 50%; border: 2px solid rgba(255, 255, 258, 0.18); display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
     .compass-svg { width: 55px; height: 55px; transform-origin: 50% 50%; will-change: transform; }
 
-    /* PANEL UNIFICADO DE CAPAS Y SÓLIDOS (DINÁMICO POR ZONA) */
+    /* PANEL UNIFICADO DE CAPAS Y SÓLIDOS */
     .solids-panel { position: absolute; top: 160px; right: 16px; z-index: 10; background: rgba(18, 21, 25, 0.92); backdrop-filter: blur(8px); padding: 10px 14px; border-radius: 8px; border: 1px solid rgba(0, 188, 212, 0.3); color: #f0f3f6; font-size: 11px; min-width: 190px; box-shadow: 0 4px 16px rgba(0,0,0,0.4); }
     .solids-panel h3 { margin: 0 0 6px 0; font-size: 11px; text-transform: uppercase; color: #00bcd4; letter-spacing: 0.5px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 4px; }
     .solid-item { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; cursor: pointer; }
@@ -70,7 +70,18 @@
     #swipeControlPanel { position: absolute; bottom: 25px; left: 50%; transform: translateX(-50%); z-index: 20; background: rgba(18, 21, 25, 0.95); backdrop-filter: blur(8px); border: 1px solid #f0883e; padding: 8px 16px; border-radius: 20px; display: none; align-items: center; gap: 10px; color: #fff; font-size: 11px; box-shadow: 0 4px 20px rgba(0,0,0,0.6); }
     #swipeControlPanel input[type=range] { accent-color: #f0883e; cursor: pointer; width: 150px; }
 
-    .coords-card { position: absolute; bottom: 15px; left: 12px; right: 12px; z-index: 10; background: rgba(18, 21, 25, 0.90); backdrop-filter: blur(8px); padding: 8px 12px; border-radius: 6px; border: 1px solid rgba(255, 255, 258, 0.12); color: #c9d1d9; font-size: 11px; font-family: "SFMono-Regular", Consolas, monospace; display: flex; flex-direction: column; gap: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); }
+    /* TARJETA DE COORDENADAS RESPONSIVA (MÓVIL VS PC) */
+    .coords-card { 
+      position: absolute; bottom: 15px; left: 12px; right: 12px; z-index: 10; 
+      background: rgba(18, 21, 25, 0.90); backdrop-filter: blur(8px); 
+      padding: 8px 14px; border-radius: 6px; border: 1px solid rgba(255, 255, 258, 0.12); 
+      color: #c9d1d9; font-size: 11px; font-family: "SFMono-Regular", Consolas, monospace; 
+      display: flex; flex-direction: column; gap: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); 
+    }
+    @media (min-width: 768px) {
+      .coords-card { right: auto; width: 360px; } /* En PC es una tarjeta fija y compacta a la izquierda */
+    }
+
     .tags-container { display: flex; gap: 6px; align-items: center; }
     .system-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; color: #58a6ff; background: rgba(88, 166, 255, 0.12); border: 1px solid rgba(88, 166, 255, 0.25); padding: 2px 5px; border-radius: 3px; }
     .source-tag { font-size: 8px; font-weight: 600; letter-spacing: 0.4px; color: #8b949e; text-transform: uppercase; }
@@ -82,7 +93,6 @@
 </head>
 <body>
 
-  <!-- BARRA SUPERIOR (SIN BOTONES DE DEV) -->
   <div class="top-bar">
     <h1 id="projectTitle">CARGANDO...</h1>
     <button class="nav-btn" onclick="topView()">Planta (2D)</button>
@@ -97,21 +107,15 @@
     <button class="nav-btn" id="clearBtn" style="display: none;" onclick="clearActiveMeasurement()">Borrar</button>
   </div>
 
-  <!-- PANEL UNIFICADO DE CAPAS Y SÓLIDOS (DINÁMICO POR ZONA) -->
   <div class="solids-panel" id="solidsPanel">
     <h3>Capas & Modelos</h3>
-    
-    <!-- CHECKBOX PARA EL MODELO PRINCIPAL -->
     <div class="solid-item" style="border-bottom: 1px dashed rgba(255,255,255,0.15); padding-bottom: 6px; margin-bottom: 8px;">
       <input type="checkbox" id="chk_modelo_principal" checked onchange="toggleModeloPrincipal(this.checked)">
       <label for="chk_modelo_principal" style="cursor:pointer; font-weight: bold; color: #58a6ff;">Modelo Principal</label>
     </div>
-
-    <!-- LISTA DE SÓLIDOS ESPECÍFICOS DE LA ZONA -->
     <div id="solidsListContainer"></div>
   </div>
 
-  <!-- PANEL DESLIZANTE DE COMPARACIÓN TEMPORAL (SWIPE) -->
   <div id="swipeControlPanel">
     <span>◀ Anterior</span>
     <input type="range" id="swipeSlider" min="0" max="1" step="0.005" value="0.5" oninput="updateSwipePosition(this.value)">
@@ -182,19 +186,16 @@
   <div id="cesiumContainer"></div>
 
   <script>
-    // =========================================================================
-    // 1. CONFIGURACIÓN GENERALIZADA (ESTRUCTURA DE DOS MODELOS + SÓLIDOS POR ZONA)
-    // =========================================================================
     const CESIUM_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IldYZHg2M08xTXRqcHBHOVgiLCJqdGkiOiJhODgyMDNjOC0xMzNjLTRhNDgtYjI2Zi0xOTUwYTI4ZTJiNGIiLCJpZCI6NDc3MzE0LCJzdWIiOiJqY2FzdHJvaiIsImlzcyI6Imh0dHBzOi8vYXBpLmNlc2l1bS5jb20iLCJhdWQiOiJUZXN0VG9rZW4iLCJpYXQiOjE3OTMxNDYwOTR9.cnADyWUF60Uq6BWYl7-zqfeAx7v3NivM3pF48F3zf58";
-    const ZONA_ACTIVA = "BERMEJAL_GUADALUPE"; // Opciones: "BERMEJAL_GUADALUPE", "FILOS", "PADS"
+    const ZONA_ACTIVA = "BERMEJAL_GUADALUPE";
 
     const CONFIG_ZONAS = {
       "BERMEJAL_GUADALUPE": {
         nombre: "TAJO BERMEJAL - GUADALUPE",
-        assetIdActual: 5179943,   // Modelo Actual (Dic)
-        assetIdAnterior: 0, // Modelo Previo para Swipe (Nov) [Pon 0 si no hay]
-        solidos: [                // Sólidos independientes para Bermejal
-          { nombre: "Waste Dump (BOP)", assetId: 6086058, color: "rgba(0, 188, 212, 0.45)" },
+        assetIdActual: 5179943,
+        assetIdAnterior: 0,
+        solidos: [
+          { nombre: "Waste Dump (BOP)", assetId: 5890537, color: "rgba(0, 188, 212, 0.45)" },
           { nombre: "Fase de Diseño 1", assetId: 0, color: "rgba(240, 136, 62, 0.45)" }
         ],
         lat0: 17.8579401103632, lon0: -99.6739536626923,
@@ -204,11 +205,9 @@
       },
       "FILOS": {
         nombre: "TAJO LOS FILOS",
-        assetIdActual: 0,         // Asset ID actual de Filos (0 si no hay)
-        assetIdAnterior: 0,       // Asset ID anterior de Filos para Swipe (0 si no hay)
-        solidos: [                // Sólidos específicos de Filos
-          { nombre: "Fase Filos Norte", assetId: 0, color: "rgba(35, 134, 54, 0.45)" }
-        ],
+        assetIdActual: 0,
+        assetIdAnterior: 0,
+        solidos: [{ nombre: "Fase Filos Norte", assetId: 0, color: "rgba(35, 134, 54, 0.45)" }],
         lat0: 17.8579401103632, lon0: -99.6739536626923,
         offset: [428637.51373973046, 1974398.0838580697, 3.8437755266563727],
         rvec: [0.00011132995333956913, -0.00003292231694213758, -0.00043669032632740194],
@@ -216,11 +215,9 @@
       },
       "PADS": {
         nombre: "PADS DE LIXIVIACIÓN",
-        assetIdActual: 0,         // [PADS] Asset ID del modelo actual de Pads (0 si no hay)
-        assetIdAnterior: 0,       // [PADS] Asset ID anterior para Swipe (0 si no hay)
-        solidos: [                // [PADS] Sólidos específicos de Pads
-          // Ejemplo: { nombre: "Etapa Pad 1", assetId: 0, color: "rgba(255, 215, 0, 0.45)" }
-        ],
+        assetIdActual: 0,
+        assetIdAnterior: 0,
+        solidos: [],
         lat0: 17.8641030711538, lon0: -99.6942028892308,
         offset: [426491.06053362874, 1975081.382389519, 3.8771747150963165],
         rvec: [0.00009673884755205756, 0.0000010868499923518604, -0.0005409057326296537],
@@ -248,14 +245,12 @@
     let isSwipeActive = false;
     const hasAnterior = activeZone.assetIdAnterior && activeZone.assetIdAnterior !== 0;
 
-    // Validación automática del botón Swipe según la zona activa
     const swipeBtn = document.getElementById('swipeBtn');
     if (!hasAnterior) {
       swipeBtn.classList.add('disabled-swipe');
       swipeBtn.title = "No hay modelo anterior configurado para comparación en esta zona";
     }
 
-    // CARGA DE MODELO PRINCIPAL (ACTUAL)
     if (activeZone.assetIdActual && activeZone.assetIdActual !== 0) {
       Cesium.Cesium3DTileset.fromIonAssetId(activeZone.assetIdActual, { maximumScreenSpaceError: 2 })
       .then(function(tileset) {
@@ -271,7 +266,6 @@
       });
     }
 
-    // CARGA CONDICIONAL DE MODELO ANTERIOR (SWIPE)
     if (hasAnterior) {
       Cesium.Cesium3DTileset.fromIonAssetId(activeZone.assetIdAnterior, { maximumScreenSpaceError: 2 })
       .then(function(tileset) {
@@ -281,21 +275,15 @@
       });
     }
 
-    // =========================================================================
-    // 2. CONTROL DEL MODELO PRINCIPAL (APAGADO / ENCENDIDO)
-    // =========================================================================
     function toggleModeloPrincipal(isVisible) {
       if (tilesetActual) {
         tilesetActual.show = isVisible;
         if (!isVisible && isSwipeActive) {
-          toggleSwipeMode(); // Desactivar Swipe si apagan el modelo principal
+          toggleSwipeMode();
         }
       }
     }
 
-    // =========================================================================
-    // 3. GESTOR DINÁMICO DE N SÓLIDOS DE DISEÑO POR ZONA
-    // =========================================================================
     const loadedSolidos = {};
 
     function initSolidosUI() {
@@ -321,7 +309,6 @@
     function toggleSolido(index, isVisible) {
       const solidoConfig = activeZone.solidos[index];
 
-      // Blindaje contra Asset IDs iguales a 0
       if (!solidoConfig.assetId || solidoConfig.assetId === 0) {
         if (isVisible) {
           alert(`El sólido "${solidoConfig.nombre}" no tiene un Asset ID asignado en CONFIG_ZONAS.`);
@@ -358,7 +345,6 @@
         return;
       }
 
-      // Asegurar que el modelo principal esté encendido para el Swipe
       document.getElementById('chk_modelo_principal').checked = true;
       if (tilesetActual) tilesetActual.show = true;
 
@@ -398,9 +384,6 @@
     });
     function orientToNorth() { viewer.camera.flyTo({ destination: viewer.camera.position, orientation: { heading: 0.0, pitch: viewer.camera.pitch, roll: 0.0 }, duration: 0.7 }); }
 
-    // =========================================================================
-    // 4. MOTOR GEODÉSICO DE CONVERSIÓN LOCAL DE MINA
-    // =========================================================================
     function getMinePlanCoordinates(cartographic, zone) {
       const a = 6378137.0; const f = 1 / 298.257223563; const e2 = 2*f - f*f; const e_prime2 = e2 / (1 - e2);
       const lat = cartographic.latitude; const lon = cartographic.longitude;
@@ -444,9 +427,6 @@
       }
     }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 
-    // =========================================================================
-    // 5. HERRAMIENTAS DE MEDICIÓN
-    // =========================================================================
     let currentMode = null; let toolPoints = []; let toolEntities = [];
     const toolHandler = new Cesium.ScreenSpaceEventHandler(viewer.scene.canvas);
     function resetGraphicsOnly() { toolPoints = []; toolEntities.forEach(e => viewer.entities.remove(e)); toolEntities = []; }
